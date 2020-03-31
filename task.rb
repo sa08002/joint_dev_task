@@ -3,9 +3,20 @@
 
 def q1
   names = ["田中", "佐藤", "佐々木", "高橋"]
+  names2 = ["田中", "佐藤", "佐々木", "高橋"]
+  names3 = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
 
+  names.push("斎藤")
+  p names
+
+  names2 << "斎藤"
+  p names2
+  
+  names3.append("斎藤")
+  p names3
+    
 end
 
 def q2
@@ -14,6 +25,10 @@ def q2
 
   # 以下に回答を記載
 
+  array = []
+  array = array1 + array2
+  p array
+
 end
 
 def q3
@@ -21,12 +36,16 @@ def q3
 
   # 以下に回答を記載
 
+  p numbers.count(3)
+
 end
 
 def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
   # 以下に回答を記載
+
+  sports.delete(nil)
 
   # 以下は変更しないで下さい
   p sports
@@ -37,6 +56,9 @@ def q5
   array2 = [1, 5, 8, 10]
 
   # 以下に回答を記載
+
+  p array1.empty?
+  p array2.empty?
 
 end
 
