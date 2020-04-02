@@ -76,7 +76,10 @@ def q7
 
   # 以下に回答を記載
 
-  array.map! {|n| n.to_i}
+  # 修正前
+  # array.map! {|n| n.to_i}
+
+  array.map!(&:to_i)
 
   # 以下は変更しないで下さい
   p array
@@ -87,9 +90,13 @@ def q8
 
   # 以下に回答を記載
 
-  programming_languages = programming_languages.map {|n| n.capitalize}
-  upper_case_programming_languages = programming_languages.map {|n| n.upcase}
-
+  # 修正前
+  # programming_languages = programming_languages.map {|n| n.capitalize}
+  # upper_case_programming_languages = programming_languages.map {|n| n.upcase}
+  
+  programming_languages.map!(&:capitalize)
+  upper_case_programming_languages = programming_languages.map(&:upcase)
+  
   # 以下は変更しないで下さい
   p programming_languages
   p upper_case_programming_languages
@@ -111,12 +118,17 @@ def q10
 
   # 以下に回答を記載
 
+  #修正前
+  # foods.each do |food|
+  #   if food.include?("うに")
+  #     puts "好物です"
+  #   else
+  #     puts "まぁまぁ好きです"
+  #   end
+  # end
+
   foods.each do |food|
-    if food.include?("うに")
-      puts "好物です"
-    else
-      puts "まぁまぁ好きです"
-    end
+    puts food.include?("うに") ? "好物です" : "まぁまぁ好きです"
   end
 
 end
@@ -126,12 +138,20 @@ def q11
 
   # 以下に回答を記載
 
+  puts "ユーザーの趣味一覧"
+  sports.flatten!.uniq!
+  sports.each.with_index(1) do |sport,i|
+    puts "No#{i} #{sport}"
+  end
+
 end
 
 def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
+
+  p data[:user][:name]
 
 end
 
@@ -141,12 +161,16 @@ def q13
 
   # 以下に回答を記載
 
+  puts user_data.merge!(update_data)
+  
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
+
+  p data.keys
 
 end
 
@@ -155,6 +179,9 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
+
+  puts data1 [:age] ? "OK" : "NG"
+  puts data2 [:age] ? "OK" : "NG"
 
 end
 
@@ -167,6 +194,10 @@ def q16
   ]
 
   # 以下に回答を記載
+
+    users.each do |user|
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。"
+    end
 
 end
 
