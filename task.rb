@@ -203,15 +203,31 @@ end
 
 class UserQ17
   # 以下に回答を記載
+  
+  # 修正前
+  # def initialize(name:, age:, gender:)
+  #   @name = name
+  #   @age = age
+  #   @gender = gender
+  # end
+  
+  # def info
+  #   puts "名前:#{@name}\n年齢#{@age}\n性別#{@gender}\n"
+  # end
 
-  def initialize(name: , age: , gender:)
-    @name = name
-    @age = age
-    @gender = gender
+
+  def initialize(**options)
+    @name = options[:name]
+    @age = options[:age]
+    @gender = options[:gender]
   end
   
   def info
-    puts "名前:#{@name}\n年齢#{@age}\n性別#{@gender}\n"
+    puts <<~EOS
+    名前:#{@name}
+    年齢:#{@age}
+    性別:#{@gender}
+    EOS
   end
 
 end
@@ -228,14 +244,30 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  def initialize(name: , age:)
+
+  # 修正前
+  # def initialize(name: , age:)
+  #   @name = name
+  #   @age = age
+  # end
+
+  # def introduce
+  #   if @age > 20
+  #     puts "こんにちは,#{@name}と申します。宜しくお願いいたします。"
+  #   else
+  #     puts "はいさいまいど〜,#{@name}です!!!"
+  #   end
+  # end
+
+
+  def initialize(name:, age:)
     @name = name
     @age = age
   end
 
   def introduce
     if @age > 20
-      puts "こんにちは,#{@name}と申します。宜しくお願いいたします。"
+      print "こんにちは,#{@name}と申します。宜しくお願いいたします。"
     else
       puts "はいさいまいど〜,#{@name}です!!!"
     end
@@ -256,7 +288,8 @@ end
 class Item
   # 以下を修正して下さい
 
-  def initialize(name)
+  attr_accessor :name
+  def initialize(name:)
     @name = name
   end
 end
@@ -267,15 +300,44 @@ def q19
   puts book.name
 end
 
+
 class UserQ20
   # 以下に回答を記載
 
+  attr_reader :name, :age
+
+  def initialize(**option)
+    @name = option[:name]
+    @age = option[:age]
+  end
+
 end
+
 
 class Zoo
   # 以下に回答を記載
 
+  def initialize(**option)
+    @name = option[:name]
+    @entry_fee = option[:entry_fee]
+  end
+  
+  def info_entry_fee(user)
+
+    case user.age
+
+    when 65 .. 120 then
+      puts "#{user.name}の入場料金は#{@entry_fee[:senior]}円です。"
+    when 13 .. 64 then
+      puts "#{user.name}の入場料金は#{@entry_fee[:adult]}円です。"
+    when 6 .. 12 then
+      puts "#{user.name}の入場料金は#{@entry_fee[:children]}円です。"
+    when 0 .. 5 then
+      puts "#{user.name}の入場料金は#{@entry_fee[:infant]}円です。"
+    end
+
 end
+
 
 
 def q20
@@ -292,4 +354,5 @@ def q20
   users.each do |user|
     zoo.info_entry_fee(user)
   end
+
 end
